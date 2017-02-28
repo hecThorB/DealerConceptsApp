@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewBag.Title = "CreateAccount";
+    Layout = "~/Views/Shared/_layoutTheme.cshtml";
+}
+
+@section styles{
+<link href="~/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css" rel="stylesheet" />
+<link href="~/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css" rel="stylesheet" />
+}
+
+<div ng-controller="dealersController as dealer">
+    @*<div class="wrapper text-center">
+        <div class="container">*@
+            <!-- Begin Content -->
+            <div class="col-md-12">
+                <div class="row margin-bottom-40">
+                    <div class="col-md-12">
+                        <!-- Reg-Form -->
+                        <form action="#" id="dealerRegForm" class="sky-form" name="dealer.dealerRegForm" ng-submit="dealer.submitRegForm()" novalidate>
+                            <header>Dealer Registration Form</header>
+
+                            <fieldset>
+                                <section>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-user"></i>
+                                        <input type="text" ng-model="dealer." name="dealershipName" placeholder="Dealership Name">
+                                        <b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
+                                    </label>
+                                </section>
+
+                                <div class="row">
+                                    <section class="col-md-12">
+                                        <label class="select">
+                                            <select name="dealerType">
+                                                <option value="0" selected disabled>Type of dealer</option>
+                                                <option value="1">Franchise</option>
+                                                <option value="2">Independent</option>
+                                            </select>
+                                            <i></i>
+                                        </label>
+                                    </section>
+                                </div>
+                            </fieldset>
+
+                            <header>Representitive Information</header>
+
+                            <fieldset>
+                                <div class="row">
+                                    <section class="col col-6">
+                                        <label class="input">
+                                            <input type="text" name="firstname" placeholder="First name">
+                                        </label>
+                                    </section>
+                                    <section class="col col-6">
+                                        <label class="input">
+                                            <input type="text" name="lastname" placeholder="Last name">
+                                        </label>
+                                    </section>
+                                </div>
+
+                                <div class="row">
+                                    <section class="col-md-12">
+                                        <label class="select">
+                                            <select name="dealerType">
+                                                <option value="0" selected disabled>Title</option>
+                                                <option value="1">Owner</option>
+                                                <option value="2">General Manager</option>
+                                                <option value="3">Manager</option>
+                                                <option value="4">Other Authorized Personal</option>
+                                            </select>
+                                            <i></i>
+                                        </label>
+                                    </section>
+                                </div>
+
+                                <section>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-envelope"></i>
+                                        <input type="email" name="email" placeholder="Email address">
+                                        <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+                                    </label>
+                                </section>
+
+                                <section>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-lock"></i>
+                                        <input type="password" name="password" placeholder="Password" id="password">
+                                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                                    </label>
+                                </section>
+
+                                <section>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-lock"></i>
+                                        <input type="password" name="passwordConfirm" placeholder="Confirm password">
+                                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                                    </label>
+                                </section>
+                            </fieldset>
+
+                            <fieldset>
+                                @*<section>
+                                    <label class="checkbox"><input type="checkbox" name="terms" id="terms"><i></i>I agree with the Terms and Conditions</label>
+                                </section>*@
+
+
+                                <!-- Modal for Terms and Conditions-->
+                                <button class="btn-u margin-bottom-5" data-toggle="modal" data-target="#responsive">Terms and Conditions</button>
+                                <label class="checkbox"><input type="checkbox" name="terms" id="terms"><i></i>I agree with the Terms and Conditions</label>
+                                <div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel4">Terms and Conditions</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h6>I understand that it is the responsibility of the Dealership to review and fully understand all the language in the test drive aggreements provided by Dealer Concepts, LLC.. 
+                                                        I hereby consent to voluntarily agree to submit any disputes with Dealer Concepts, LLC. to final and binding arbiration.</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <footer>
+                                <button type="submit" class="btn-u">Submit</button>
+                            </footer>
+                        </form>
+                        <!-- End Reg-Form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    @*</div>
+</div>*@
+
+@section scripts{
+    <!-- Angular Controller-->
+    <script type="text/javascript">
+        (function () {
+            "use strict"
+
+            angular.module("app").controller('dealersController', DealersController);
+
+            DealersController.$inject = ['$baseController'];
+
+            function DealersController(
+                $baseController) {
+
+                var vm = this;
+
+                $.extend(vm, $baseController);
+
+                render();
+
+                function render() {
+                    vm.$log.debug("Angular ready");
+                }
+            }
+        })();
+
+    </script>
+}
