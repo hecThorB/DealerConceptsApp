@@ -1,7 +1,10 @@
-﻿
+﻿@using DealerConceptsApp.Enums;
+@using DealerConceptsApp.Models.ViewModels;
+@model WelcomeBaseViewModel
+
 @{
     ViewBag.Title = "CreateAccount";
-    Layout = "~/Views/Shared/_layoutTheme.cshtml";
+    Layout = "~/Views/Shared/_layoutDealer.cshtml";
 }
 
 @section styles{
@@ -24,7 +27,7 @@
                                 <section>
                                     <label class="input">
                                         <i class="icon-append fa fa-user"></i>
-                                        <input type="text" ng-model="dealer." name="dealershipName" placeholder="Dealership Name">
+                                        <input type="text" ng-model="dealer.newProfile.dealershipName" name="dealershipName" placeholder="Dealership Name">
                                         <b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
                                     </label>
                                 </section>
@@ -144,6 +147,10 @@
 </div>*@
 
 @section scripts{
+
+        <!------------------------------------NOTIFICATIONS---------------------------------------------->
+<script src="~/Scripts/dealerConcepts/services/admin/dealerConcepts.services.admin.notifications.js"></script>
+
     <!-- Angular Controller-->
     <script type="text/javascript">
         (function () {

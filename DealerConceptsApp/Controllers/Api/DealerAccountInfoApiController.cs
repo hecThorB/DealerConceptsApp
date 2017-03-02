@@ -5,6 +5,7 @@ using DealerConceptsApp.Models.Responses;
 using DealerConceptsApp.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -53,5 +54,34 @@ namespace DealerConceptsApp.Controllers.Api
 
             return Request.CreateResponse(HttpStatusCode.OK, sr);
         }
+
+        [Route("accounts"),HttpGet]
+        public HttpResponseMessage SelectAll()
+        {
+            List<DealerAccountInfo> list = _dealerAccountInfoService.GetAllDealerAccountInfo();
+            ItemsResponse<DealerAccountInfo> responseData = new ItemsResponse<DealerAccountInfo>();
+            responseData.Items = list;
+
+            return Request.CreateResponse(HttpStatusCode.OK, responseData);
+        }
+
+        [Route("{id:int}/account"),HttpGet]
+        public HttpResponseMessage SelectById(int id)
+        {
+            ItemResponse<DealerAccountInfo> responseData = new ItemResponse<DealerAccountInfo>();
+            responseData.Item = _dealerAccountInfoService.SelectById(id);
+
+            return Request.CreateResponse(HttpStatusCode.OK, responseData);
+        }
+
+        [Route("{id:int}/account"), HttpDelete]
+        public HttpResponseMessage Delete(int id)
+        {
+            _dealerAccountInfoService.DeleteDealerAccountInfo(id);
+            SuccessResponse responseData = new SuccessResponse();
+
+            return Request.CreateResponse(HttpStatusCode.OK, responseData);
+        }
+
     }
 }

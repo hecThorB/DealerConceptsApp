@@ -98,3 +98,9 @@ C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp
 C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
 C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\Unity.Mvc5.dll
 C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\Unity.WebApi.dll
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\AWSSDK.Core.dll
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\AWSSDK.S3.dll
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\AWSSDK.Core.pdb
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\AWSSDK.Core.xml
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\AWSSDK.S3.pdb
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\AWSSDK.S3.xml

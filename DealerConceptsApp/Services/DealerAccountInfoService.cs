@@ -85,5 +85,63 @@ namespace DealerConceptsApp.Services
                     parameters.AddWithValue("@Id", id);
                 });          
         }
+
+        public List<DealerAccountInfo> GetAllDealerAccountInfo()
+        {
+            List<DealerAccountInfo> list = null;
+
+            DataProvider.ExecuteCmd(GetConnection, "dbo.DealerRegistration_SelectAll", inputParamMapper: EmptyParamMapper
+                , map: (reader, set) =>
+                {
+                    DealerAccountInfo accountInfo = MapProfile(reader);
+
+                    if (list == null)
+                    {
+                        list = new List<DealerAccountInfo>();
+                    }
+
+                    list.Add(accountInfo);
+                }
+                );
+
+            return list;
+        }
+
+        private void EmptyParamMapper(SqlParameterCollection paramCollection)
+        {
+
+        }
+
+        public DealerAccountInfo SelectById(int id)
+        {
+            DealerAccountInfo accountInfo = null;
+
+            DataProvider.ExecuteCmd(
+                GetConnection,
+                "[dbo].[DealerRegistration_SelectById]",
+                inputParamMapper: parameters => parameters.AddWithValue("@Id", id),
+
+                map: delegate (IDataReader reader, short set)
+                {
+                    accountInfo = MapProfile(reader);
+
+                });
+            return accountInfo;
+        }
+
+        public void  DeleteDealerAccountInfo(int id)
+        {
+            DataProvider.ExecuteNonQuery(
+                GetConnection,
+                "[dbo].[DealerRegistration_Delete]",
+                inputParamMapper: delegate (SqlParameterCollection parameters)
+                {
+                    parameters.AddWithValue("@Id", id);
+                },
+                returnParameters: delegate (SqlParameterCollection parameters)
+                {
+                }
+                );
+        }
     }
 }

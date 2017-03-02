@@ -13,13 +13,13 @@ namespace DealerConceptsApp.Services.Interfaces
 
         void UpdateDealerAccountInfo(int id, DealerAccountInfoUpdateRequest newAccount);
 
-        //void DeleteDealerAccountInfo(int id);
+        void DeleteDealerAccountInfo(int id);
 
-        //DealerAccountInfo SelectById(int id);
+        DealerAccountInfo SelectById(int id);
 
         //DealerAccountInfo SelectByUserId(string currentUser);
 
-        //List<DealerAccountInfo> GetAllDealerAccountInfo();
+        List<DealerAccountInfo> GetAllDealerAccountInfo();
 
         //DealerAccountInfo SelectByEmail(string email);
     }
