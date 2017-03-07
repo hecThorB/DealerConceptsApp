@@ -17,7 +17,7 @@
 
         var vm = this;
 
-        $baseController.$.extend(vm, $baseController);
+        $baseController.merge(vm, $baseController);
 
         vm.$scope = $scope;
 
