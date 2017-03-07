@@ -1,6 +1,6 @@
 ﻿@using DealerConceptsApp.Enums;
 @using DealerConceptsApp.Models.ViewModels;
-@model WelcomeBaseViewModel
+@model BaseViewModel
 
 @{
     ViewBag.Title = "CreateAccount";
@@ -12,7 +12,7 @@
 <link href="~/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css" rel="stylesheet" />
 }
 
-<div ng-controller="dealersController as dealer">
+<div ng-controller="DealerRegistrationController as dealer">
     @*<div class="wrapper text-center">
         <div class="container">*@
             <!-- Begin Content -->
@@ -27,7 +27,7 @@
                                 <section>
                                     <label class="input">
                                         <i class="icon-append fa fa-user"></i>
-                                        <input type="text" ng-model="dealer.newProfile.dealershipName" name="dealershipName" placeholder="Dealership Name">
+                                        <input type="text" ng-model="dealer.data.dealershipName" name="dealershipName" placeholder="Dealership Name">
                                         <b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
                                     </label>
                                 </section>
@@ -35,13 +35,21 @@
                                 <div class="row">
                                     <section class="col-md-12">
                                         <label class="select">
-                                            <select name="dealerType">
-                                                <option value="0" selected disabled>Type of dealer</option>
-                                                <option value="1">Franchise</option>
-                                                <option value="2">Independent</option>
+                                            <select name="dealerType"
+                                                    id="dealerType"
+                                                    ng-model="dealer.data.dealerType"
+                                                    ng-options="enumData.value as enumData.displayName for (enumName, enumData) in dealer.dealerDropDown"
+                                                    ng-class="{'error': dealer.showNewDealerFormErrors && dealer.dealerForm.dealerRegistration.$invalid}"
+                                                    required>
+                                                <option value="">Type of dealer</option>
+                                                @*<option value="0" selected disabled>Type of dealer</option>
+                <option value="1">Franchise</option>
+                <option value="2">Independent</option>*@
                                             </select>
-                                            <i></i>
                                         </label>
+                                            <p class="errorMessage" ng-show="dealer.showNewDealerFormErrors && dealer.dealerForm.dealerRegistration.$error.required"></p>
+                                            <i></i>
+                                        
                                     </section>
                                 </div>
                             </fieldset>
@@ -151,12 +159,14 @@
         <!------------------------------------NOTIFICATIONS---------------------------------------------->
 <script src="~/Scripts/dealerConcepts/services/admin/dealerConcepts.services.admin.notifications.js"></script>
 
+<script src="~/Scripts/dealerConcepts/dealers/controllers/welcomeDealerRegistrationController.js"></script>
+
     <!-- Angular Controller-->
     <script type="text/javascript">
         (function () {
             "use strict"
 
-            angular.module("app").controller('dealersController', DealersController);
+            angular.module(APPNAME).controller('dealersController', DealersController);
 
             DealersController.$inject = ['$baseController'];
 
@@ -174,6 +184,90 @@
                 }
             }
         })();
-
     </script>
+
+    <script type="text/javascript">
+        (function () {
+            "use strict";
+
+            angular.module(APPNAME).factory('dealerRegistrationEnums', dealerRegistrationEnums);
+
+            //dealerRegistrationEnums.$inject = ['$baseService'];
+
+            function dealerRegistrationEnums() {
+                var dealerRegistrationEnumsObject = {
+
+                    dealerShipkind : @typeof(DealershipKind).EnumToJson(1),
+                    titleKind : @typeof(AdminTitleKind).EnumToJson(1),
+                }
+
+                //var service = $baseService.merge(true, {}, dealerRegistrationEnumsObject, $baseService);
+                return dealerRegistrationEnumsObject;
+            }
+        }());
+    </script>
+
+    @*<script type="text/javascript">
+        // Dealer Registration JS
+        (function () {
+            "use strict";
+
+            angular.module(APPNAME).controller('DealerRegistrationController', DealerRegistrationController);
+
+            DealerRegistrationController.$inject = ['$scope', '$baseController', 'dealerRegistrationEnums', 'dealerAccountInfoService', 'adminNotifications', 'model', '$window'];
+
+            function DealerRegistrationController(
+                $scope
+                , $baseController
+                , dealerRegistrationEnums
+                , dealerAccountInfoService
+                , adminNotifications
+                , model
+                , $window) {
+
+                var vm = this;
+
+                $baseController.merge(vm, $baseController);
+
+                vm.$scope = $scope;
+
+                // Services
+                vm.dealerAccountInfoService = dealerAccountInfoService;
+                vm.notify = vm.dealerAccountInfoService.getNotifier($scope);
+                vm.dealerRegistrationEnums = dealerRegistrationEnums;
+                vm.adminNotifications = adminNotifications;
+                vm.model = model;
+
+                // Drop Downs
+                vm.dealerDropDown = vm.enums.dealershipKindEnum;
+                vm.titleDropDown = vm.enums.titleKindEnum;
+
+                // Variables
+                vm.showNewDealerFormErrors = false;
+                vm.submitButton = "Submit";
+                vm.resetButton = "New Registration";
+                vm.dealerId = vm.model.dealerId;
+                vm.data = {}; // have to define this as an object so it can be read when you getById
+                vm.editMode = null;
+                vm.editMode = null;
+
+                // Functions
+                vm.onDealerFormSubmit = _onDealerFormSubmit;
+                vm.OnDealerFormReset = _onDealerFormReset;
+
+                render();
+
+                function render() {
+                    $window.scrollTo(0, 0);
+
+                    var isAdmin = true;
+                    vm.dealerAccountInfoService.setPrefix(isAdmin);
+
+                    vm.$log.debug("Angular Ready");
+
+                }
+            }
+        })();
+    </script>*@
+
 }

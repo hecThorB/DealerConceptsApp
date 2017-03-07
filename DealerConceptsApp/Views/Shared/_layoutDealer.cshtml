@@ -1,9 +1,12 @@
-﻿
+﻿@using DealerConceptsApp.Models.ViewModels;
+
+@model BaseViewModel
+
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!-->
-<html lang="en">
+<html lang="en" data-ng-app="DealerConceptsApp">
 <!--<![endif]-->
 <head>
     <title>Dealer Concepts</title>
@@ -829,12 +832,14 @@
             @*</div><!--/container-->
         </div><!--/breadcrumbs-->*@
         <!--=== End Breadcrumbs ===-->
+
         <!--=== Content ===-->
         <div class="container content height-500">
             <!-- Write Your HTML Codes Here -->
             @RenderBody()
         </div>
         <!--=== End Content ===-->
+
         <!--=== Footer Version 1 ===-->
         <div class="footer-v1">
             <div class="footer">
@@ -901,7 +906,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <p>
-                                2015 &copy; All Rights Reserved.
+                                Dealer Concepts &copy; @DateTime.Now.Year All Rights Reserved.
                                 <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
                             </p>
                         </div>
@@ -1048,15 +1053,42 @@
     </script>
     <!--Angular Base-->
     <script src="~/Scripts/angular.min.js"></script>
+    
     <script type="text/javascript">
-        angular.module("app", []);
+        var APPNAME = 'DealerConceptsApp';
     </script>
-    <script src="~/Scripts/Ng/BaseController.js"></script>
+
+    <script type="text/javascript">
+        angular.module(APPNAME, []);
+    </script>
+    <script src="~/Scripts/ng/baseController.js"></script>
+    <script src="~/Scripts/dealerConcepts.js"></script>
+    <script src="~/Scripts/dealerConcepts.ng.app.js"></script>
     <!--[if lt IE 9]>
     <script src="/assets/plugins/respond.js"></script>
     <script src="/assets/plugins/html5shiv.js"></script>
     <script src="/assets/plugins/placeholder-IE-fixes.js"></script>
     <![endif]-->
     @RenderSection("scripts", false)
+    <script type="text/javascript">
+        (function () {
+            'use strict';
+
+            angular
+            .module(APPNAME)
+            .factory('dealerConceptsBaseModel', DealerConceptsBaseModel);
+
+            function DealerConceptsBaseModel() {
+
+                var m = this;
+
+                m.model = @Html.RawJson(Model);
+
+                return m;
+           
+            }
+        })();
+    </script>
+
 </body>
 </html>

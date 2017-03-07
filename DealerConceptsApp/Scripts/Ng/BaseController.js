@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    angular.module("app").factory('$baseController', BaseController);
+    angular.module(APPNAME).factory('$baseController', BaseController);
 
     BaseController.$inject = [
         '$document'

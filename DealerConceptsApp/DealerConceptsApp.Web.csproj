@@ -242,6 +242,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Classes\Extensions\DictionaryExt.cs" />
+    <Compile Include="Classes\Extensions\EnumExt.cs" />
+    <Compile Include="Classes\Extensions\HtmlHelperExt.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\BaseApiController.cs" />
     <Compile Include="Controllers\Api\DealerAccountInfoApiController.cs" />
@@ -5559,6 +5562,9 @@
     <Content Include="assets\plugins\vector-map\README.md" />
     <Content Include="assets\plugins\wow-animations\LICENSE-MIT" />
     <Content Include="assets\plugins\wow-animations\README.md" />
+    <Content Include="Scripts\dealerConcepts.js" />
+    <Content Include="Scripts\dealerConcepts.ng.app.js" />
+    <Content Include="Scripts\dealerConcepts\dealers\controllers\welcomeDealerRegistrationController.js" />
     <Content Include="Scripts\dealerConcepts\services\admin\dealerConcepts.services.admin.notifications.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dealerConcepts\services\kiosk\dealerConcepts.services.kiosk.notifications.js" />
@@ -5570,7 +5576,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\Ng\BaseController.js" />
+    <Content Include="Scripts\ng\baseController.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
