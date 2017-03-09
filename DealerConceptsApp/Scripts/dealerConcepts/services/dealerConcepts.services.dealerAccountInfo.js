@@ -13,7 +13,7 @@ dealerConcepts.services.dealerAccountInfo.setPrefix = function (isAdmin) {
 }
 
 dealerConcepts.services.dealerAccountInfo.insert = function (data, onSuccess, onError) {
-    var url = "api/dealers/accountinfo";
+    var url = "/api/dealers/accountinfo";
 
     var settings = {
         cache: false

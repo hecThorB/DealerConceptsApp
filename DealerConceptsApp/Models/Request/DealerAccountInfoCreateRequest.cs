@@ -11,6 +11,9 @@ namespace DealerConceptsApp.Models.Request
         [Required, StringLength(128)]
         public string DealerName { get; set; }
 
+        [Required]
+        public int DealerType { get; set; }
+
         [Required, StringLength(128)]
         public string FirstName { get; set; }
 
@@ -24,7 +27,7 @@ namespace DealerConceptsApp.Models.Request
         public string Email { get; set; }
 
         [Required, StringLength(128)]
-        public string Password { get; set; }
+        public string PhoneNumber { get; set; }
 
         public bool IsDeleted { get; set; }
     }

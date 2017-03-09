@@ -27,7 +27,7 @@
                         <section>
                             <label class="input">
                                 <i class="icon-append fa fa-user"></i>
-                                <input type="text" ng-model="dealer.data.dealershipName" name="dealershipName" placeholder="Dealership Name">
+                                <input type="text" ng-model="dealer.data.dealerName" name="dealerName" placeholder="Dealership Name">
                                 <b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
                             </label>
                         </section>
@@ -60,7 +60,7 @@
                                 <label class="select">
                                     <select name="dealerType"
                                             id="dealerType"
-                                            ng-model="dealer.data.titleType"
+                                            ng-model="dealer.data.title"
                                             ng-options="enumData.value as enumData.displayName for (enumName, enumData) in dealer.titleDropDown"
                                             ng-class="{'error': dealer.showNewDealerFormErrors && dealer.dealerForm.dealerRegistration.$invalid}"
                                             required>
@@ -108,22 +108,13 @@
                         </div>
 
                         <div class="row">
-                            <section class="col col-6">
+                            <section class="col col-md-12">
                                 <label class="input">
-                                    <input type="text" ng-model="dealer.data.password" name="password" id="inputPassword" placeholder="Password"
-                                           ng-class="{'error': dealer.showNewDealerFormErrors && dealer.dealerForm.password.$invalid}" required>
+                                    <input type="text" ng-model="dealer.data.phoneNumber" name="phoneNumber" id="inputPhoneNumber" placeholder="Phone Number"
+                                           ng-class="{'error': dealer.showNewDealerFormErrors && dealer.dealerForm.phoneNumber.$invalid}" required>
                                 </label>
                                 <div role="alert" class="help-inline error">
-                                    <span class="error" ng-show="dealer.showNewDealerFormErrors && dealer.dealerForm.password.$error.required">Password is required</span>
-                                </div>
-                            </section>
-                            <section class="col col-6">
-                                <label class="input">
-                                    <input type="text" ng-model="dealer.data.confirmPassword" name="confirmPassword" id="inputConfirmPassword" placeholder="Confirm password"
-                                           ng-class="{'error': dealer.showNewDealerFormErrors && dealer.dealerForm.confirmPassword.$invalid}" required>
-                                </label>
-                                <div role="alert" class="help-inline error">
-                                    <span class="error" ng-show="dealer.showNewDealerFormErrors && dealer.dealerForm.confirmPassword.$error.required">Password confirmation is required</span>
+                                    <span class="error" ng-show="dealer.showNewDealerFormErrors && dealer.dealerForm.phoneNumber.$error.required">Phone number is required</span>
                                 </div>
                             </section>
                         </div>

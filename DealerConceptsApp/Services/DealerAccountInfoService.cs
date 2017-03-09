@@ -30,6 +30,7 @@ namespace DealerConceptsApp.Services
             account.DateModified = reader.GetSafeDateTime(startingIndex++);
             account.UserId = reader.GetSafeString(startingIndex++);
             account.DealerName = reader.GetSafeString(startingIndex++);
+            account.DealerType = reader.GetSafeInt32(startingIndex++);
             account.FirstName = reader.GetSafeString(startingIndex++);
             account.LastName = reader.GetSafeString(startingIndex++);
             account.Title = reader.GetSafeInt32(startingIndex++);
@@ -49,11 +50,12 @@ namespace DealerConceptsApp.Services
                 {
                     parameters.AddWithValue("@UserId", "398091");
                     parameters.AddWithValue("@DealerName", newAccount.DealerName);
+                    parameters.AddWithValue("@DealerType", newAccount.DealerType);
                     parameters.AddWithValue("@FirstName", newAccount.FirstName);
                     parameters.AddWithValue("@LastName", newAccount.LastName);
                     parameters.AddWithValue("@Title", newAccount.Title);
                     parameters.AddWithValue("@Email", newAccount.Email);
-                    parameters.AddWithValue("@Password", newAccount.Password);
+                    parameters.AddWithValue("@PhoneNumber", newAccount.PhoneNumber);
 
                     parameters.Add(new SqlParameter
                     {
@@ -77,11 +79,12 @@ namespace DealerConceptsApp.Services
                 inputParamMapper: delegate (SqlParameterCollection parameters)
                 {
                     parameters.AddWithValue("@DealerName", newAccount.DealerName);
+                    parameters.AddWithValue("@DealerType", newAccount.DealerType);
                     parameters.AddWithValue("@FirstName", newAccount.FirstName);
                     parameters.AddWithValue("@LastName", newAccount.LastName);
                     parameters.AddWithValue("@Title", newAccount.Title);
                     parameters.AddWithValue("@Email", newAccount.Email);
-                    parameters.AddWithValue("@Password", newAccount.Password);
+                    parameters.AddWithValue("@PhoneNumber", newAccount.PhoneNumber);
                     parameters.AddWithValue("@Id", id);
                 });          
         }
