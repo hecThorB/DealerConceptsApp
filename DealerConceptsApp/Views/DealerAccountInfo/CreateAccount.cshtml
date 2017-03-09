@@ -8,158 +8,179 @@
 }
 
 @section styles{
-<link href="~/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css" rel="stylesheet" />
-<link href="~/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css" rel="stylesheet" />
+    <link href="~/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css" rel="stylesheet" />
+    <link href="~/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css" rel="stylesheet" />
 }
 
 <div ng-controller="DealerRegistrationController as dealer">
     @*<div class="wrapper text-center">
         <div class="container">*@
-            <!-- Begin Content -->
+    <!-- Begin Content -->
+    <div class="col-md-12">
+        <div class="row margin-bottom-40">
             <div class="col-md-12">
-                <div class="row margin-bottom-40">
-                    <div class="col-md-12">
-                        <!-- Reg-Form -->
-                        <form action="#" id="dealerRegForm" class="sky-form" name="dealer.dealerRegForm" ng-submit="dealer.submitRegForm()" novalidate>
-                            <header>Dealer Registration Form</header>
+                <!-- Reg-Form -->
+                <form action="#" id="dealerRegForm" class="sky-form" name="dealer.dealerRegForm" ng-submit="dealer.onDealerFormSubmit()" novalidate>
+                    <header>Dealer Registration Form</header>
 
-                            <fieldset>
-                                <section>
-                                    <label class="input">
-                                        <i class="icon-append fa fa-user"></i>
-                                        <input type="text" ng-model="dealer.data.dealershipName" name="dealershipName" placeholder="Dealership Name">
-                                        <b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
-                                    </label>
-                                </section>
+                    <fieldset>
+                        <section>
+                            <label class="input">
+                                <i class="icon-append fa fa-user"></i>
+                                <input type="text" ng-model="dealer.data.dealershipName" name="dealershipName" placeholder="Dealership Name">
+                                <b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
+                            </label>
+                        </section>
 
-                                <div class="row">
-                                    <section class="col-md-12">
-                                        <label class="select">
-                                            <select name="dealerType"
-                                                    id="dealerType"
-                                                    ng-model="dealer.data.dealerType"
-                                                    ng-options="enumData.value as enumData.displayName for (enumName, enumData) in dealer.dealerDropDown"
-                                                    ng-class="{'error': dealer.showNewDealerFormErrors && dealer.dealerForm.dealerRegistration.$invalid}"
-                                                    required>
-                                                <option value="">Type of dealer</option>
-                                                @*<option value="0" selected disabled>Type of dealer</option>
-                <option value="1">Franchise</option>
-                <option value="2">Independent</option>*@
-                                            </select>
-                                        </label>
-                                            <p class="errorMessage" ng-show="dealer.showNewDealerFormErrors && dealer.dealerForm.dealerRegistration.$error.required"></p>
-                                            <i></i>
-                                        
-                                    </section>
+                        <div class="row">
+                            <section class="col-md-12">
+                                <label class="select">
+                                    <select name="dealerType"
+                                            id="dealerType"
+                                            ng-model="dealer.data.dealerType"
+                                            ng-options="enumData.value as enumData.displayName for (enumName, enumData) in dealer.dealerDropDown"
+                                            ng-class="{'error': dealer.showNewDealerFormErrors && dealer.dealerForm.dealerRegistration.$invalid}"
+                                            required>
+                                        <option value="">Type of dealer</option>
+                                    </select>
+                                </label>
+                                <p class="errorMessage" ng-show="dealer.showNewDealerFormErrors && dealer.dealerForm.dealerRegistration.$error.required"></p>
+                                <i></i>
+                            </section>
+                        </div>
+                    </fieldset>
+
+                    <header>Representitive Information</header>
+
+                    <fieldset>
+
+                        <div class="row">
+                            <section class="col-md-12">
+
+                                <label class="select">
+                                    <select name="dealerType"
+                                            id="dealerType"
+                                            ng-model="dealer.data.titleType"
+                                            ng-options="enumData.value as enumData.displayName for (enumName, enumData) in dealer.titleDropDown"
+                                            ng-class="{'error': dealer.showNewDealerFormErrors && dealer.dealerForm.dealerRegistration.$invalid}"
+                                            required>
+                                        <option value="">Title</option>
+                                    </select>
+                                </label>
+                                <p class="errorMessage" ng-show="dealer.showNewDealerFormErrors && dealer.dealerForm.dealerRegistration.$error.required"></p>
+                                <i></i>
+                            </section>
+                        </div>
+
+                        <div class="row">
+                            <section class="col col-6">
+                                <label class="input">
+                                    <input type="text" ng-model="dealer.data.firstName" name="firstName" id="inputFirstName" placeholder="First name"
+                                           ng-class="{'error': dealer.showNewDealerFormErrors && dealer.dealerForm.firstName.$invalid}" required>
+                                </label>
+                                <div role="alert" class="help-inline error">
+                                    <span class="error" ng-show="dealer.showNewDealerFormErrors && dealer.dealerForm.firstName.$error.required">First Name is required</span>
                                 </div>
-                            </fieldset>
-
-                            <header>Representitive Information</header>
-
-                            <fieldset>
-                                <div class="row">
-                                    <section class="col col-6">
-                                        <label class="input">
-                                            <input type="text" name="firstname" placeholder="First name">
-                                        </label>
-                                    </section>
-                                    <section class="col col-6">
-                                        <label class="input">
-                                            <input type="text" name="lastname" placeholder="Last name">
-                                        </label>
-                                    </section>
+                            </section>
+                            <section class="col col-6">
+                                <label class="input">
+                                    <input type="text" ng-model="dealer.data.lastName" name="lastName" id="inputLastName" placeholder="Last name"
+                                           ng-class="{'error': dealer.showNewDealerFormErrors && dealer.dealerForm.lastName.$invalid}" required>
+                                </label>
+                                <div role="alert" class="help-inline error">
+                                    <span class="error" ng-show="dealer.showNewDealerFormErrors && dealer.dealerForm.lastName.$error.required">Last name is required</span>
                                 </div>
+                            </section>
+                        </div>
 
-                                <div class="row">
-                                    <section class="col-md-12">
-                                        <label class="select">
-                                            <select name="dealerType">
-                                                <option value="0" selected disabled>Title</option>
-                                                <option value="1">Owner</option>
-                                                <option value="2">General Manager</option>
-                                                <option value="3">Manager</option>
-                                                <option value="4">Other Authorized Personal</option>
-                                            </select>
-                                            <i></i>
-                                        </label>
-                                    </section>
+
+                        
+                        <div class="row">
+                            <section class="col-md-12">
+                                <label class="input">
+                                    <input type="text" ng-model="dealer.data.email" name="email" id="inputEmail" placeholder="Email"
+                                           ng-class="{'error': dealer.showNewDealerFormErrors && dealer.dealerForm.email.$invalid}" required>
+                                </label>
+                                <div role="alert" class="help-inline error">
+                                    <span class="error" ng-show="dealer.showNewDealerFormErrors && dealer.dealerForm.email.$error.required">Email is required</span>
                                 </div>
+                            </section>
+                        </div>
 
-                                <section>
-                                    <label class="input">
-                                        <i class="icon-append fa fa-envelope"></i>
-                                        <input type="email" name="email" placeholder="Email address">
-                                        <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
-                                    </label>
-                                </section>
+                        <div class="row">
+                            <section class="col col-6">
+                                <label class="input">
+                                    <input type="text" ng-model="dealer.data.password" name="password" id="inputPassword" placeholder="Password"
+                                           ng-class="{'error': dealer.showNewDealerFormErrors && dealer.dealerForm.password.$invalid}" required>
+                                </label>
+                                <div role="alert" class="help-inline error">
+                                    <span class="error" ng-show="dealer.showNewDealerFormErrors && dealer.dealerForm.password.$error.required">Password is required</span>
+                                </div>
+                            </section>
+                            <section class="col col-6">
+                                <label class="input">
+                                    <input type="text" ng-model="dealer.data.confirmPassword" name="confirmPassword" id="inputConfirmPassword" placeholder="Confirm password"
+                                           ng-class="{'error': dealer.showNewDealerFormErrors && dealer.dealerForm.confirmPassword.$invalid}" required>
+                                </label>
+                                <div role="alert" class="help-inline error">
+                                    <span class="error" ng-show="dealer.showNewDealerFormErrors && dealer.dealerForm.confirmPassword.$error.required">Password confirmation is required</span>
+                                </div>
+                            </section>
+                        </div>
 
-                                <section>
-                                    <label class="input">
-                                        <i class="icon-append fa fa-lock"></i>
-                                        <input type="password" name="password" placeholder="Password" id="password">
-                                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
-                                    </label>
-                                </section>
+                    </fieldset>
 
-                                <section>
-                                    <label class="input">
-                                        <i class="icon-append fa fa-lock"></i>
-                                        <input type="password" name="passwordConfirm" placeholder="Confirm password">
-                                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
-                                    </label>
-                                </section>
-                            </fieldset>
-
-                            <fieldset>
-                                @*<section>
-                                    <label class="checkbox"><input type="checkbox" name="terms" id="terms"><i></i>I agree with the Terms and Conditions</label>
-                                </section>*@
-
-
-                                <!-- Modal for Terms and Conditions-->
-                                <button class="btn-u margin-bottom-5" data-toggle="modal" data-target="#responsive">Terms and Conditions</button>
+                    <fieldset>
+                        @*<section>
                                 <label class="checkbox"><input type="checkbox" name="terms" id="terms"><i></i>I agree with the Terms and Conditions</label>
-                                <div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title" id="myModalLabel4">Terms and Conditions</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <h6>I understand that it is the responsibility of the Dealership to review and fully understand all the language in the test drive aggreements provided by Dealer Concepts, LLC.. 
-                                                        I hereby consent to voluntarily agree to submit any disputes with Dealer Concepts, LLC. to final and binding arbiration.</h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+                            </section>*@
+
+
+                        <!-- Modal for Terms and Conditions-->
+                        <button class="btn-u margin-bottom-5" data-toggle="modal" data-target="#responsive">Terms and Conditions</button>
+                        <label class="checkbox"><input type="checkbox" name="terms" id="terms"><i></i>I agree with the Terms and Conditions</label>
+                        <div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel4">Terms and Conditions</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h6>
+                                                    I understand that it is the responsibility of the Dealership to review and fully understand all the language in the test drive aggreements provided by Dealer Concepts, LLC..
+                                                    I hereby consent to voluntarily agree to submit any disputes with Dealer Concepts, LLC. to final and binding arbiration.
+                                                </h6>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
-                            </fieldset>
+                            </div>
+                        </div>
+                    </fieldset>
 
-                            <footer>
-                                <button type="submit" class="btn-u">Submit</button>
-                            </footer>
-                        </form>
-                        <!-- End Reg-Form -->
-                    </div>
-                </div>
+                    <footer>
+                        <button type="submit" class="btn-u" id="dealerSignUpButton">{{dealer.submitButton}}</button>
+                    </footer>
+                </form>
+                <!-- End Reg-Form -->
             </div>
         </div>
-    @*</div>
-</div>*@
+    </div>
+</div>
+@*</div>
+    </div>*@
 
 @section scripts{
 
-        <!------------------------------------NOTIFICATIONS---------------------------------------------->
-<script src="~/Scripts/dealerConcepts/services/admin/dealerConcepts.services.admin.notifications.js"></script>
-
-<script src="~/Scripts/dealerConcepts/dealers/controllers/welcomeDealerRegistrationController.js"></script>
+    <!------------------------------------NOTIFICATIONS---------------------------------------------->
+    <script src="~/Scripts/dealerConcepts/services/admin/dealerConcepts.services.admin.notifications.js"></script>
+    <script src="~/Scripts/dealerConcepts/services/dealerConcepts.services.dealerAccountInfo.js"></script>
 
     <!-- Angular Controller-->
     <script type="text/javascript">
@@ -192,29 +213,35 @@
 
             angular.module(APPNAME).factory('dealerRegistrationEnums', dealerRegistrationEnums);
 
-            //dealerRegistrationEnums.$inject = ['$baseService'];
+            dealerRegistrationEnums.$inject = ['$baseService'];
 
-            function dealerRegistrationEnums() {
+            function dealerRegistrationEnums($baseService) {
                 var dealerRegistrationEnumsObject = {
 
-                    dealerShipkind : @typeof(DealershipKind).EnumToJson(1),
-                    titleKind : @typeof(AdminTitleKind).EnumToJson(1),
+                    dealershipKindEnum : @typeof(DealershipKind).EnumToJson(1),
+                    titleKindEnum : @typeof(AdminTitleKind).EnumToJson(1),
                 }
 
-                //var service = $baseService.merge(true, {}, dealerRegistrationEnumsObject, $baseService);
-                return dealerRegistrationEnumsObject;
+                var service = $baseService.merge(true, {}, dealerRegistrationEnumsObject, $baseService);
+                return service;
             }
         }());
     </script>
 
-    @*<script type="text/javascript">
+    <script type="text/javascript">
         // Dealer Registration JS
         (function () {
             "use strict";
 
             angular.module(APPNAME).controller('DealerRegistrationController', DealerRegistrationController);
 
-            DealerRegistrationController.$inject = ['$scope', '$baseController', 'dealerRegistrationEnums', 'dealerAccountInfoService', 'adminNotifications', 'model', '$window'];
+            DealerRegistrationController.$inject = [
+                '$scope'
+                , '$baseController'
+                , 'dealerRegistrationEnums'
+                , 'dealerAccountInfoService'
+                , 'adminNotifications'
+                , '$window'];
 
             function DealerRegistrationController(
                 $scope
@@ -222,7 +249,6 @@
                 , dealerRegistrationEnums
                 , dealerAccountInfoService
                 , adminNotifications
-                , model
                 , $window) {
 
                 var vm = this;
@@ -236,17 +262,16 @@
                 vm.notify = vm.dealerAccountInfoService.getNotifier($scope);
                 vm.dealerRegistrationEnums = dealerRegistrationEnums;
                 vm.adminNotifications = adminNotifications;
-                vm.model = model;
 
                 // Drop Downs
-                vm.dealerDropDown = vm.enums.dealershipKindEnum;
-                vm.titleDropDown = vm.enums.titleKindEnum;
+                vm.dealerDropDown = vm.dealerRegistrationEnums.dealershipKindEnum;
+                vm.titleDropDown = vm.dealerRegistrationEnums.titleKindEnum;
 
                 // Variables
                 vm.showNewDealerFormErrors = false;
-                vm.submitButton = "Submit";
+                vm.submitButton = "Register Dealer";
                 vm.resetButton = "New Registration";
-                vm.dealerId = vm.model.dealerId;
+                //vm.dealerId = vm.model.dealerId;
                 vm.data = {}; // have to define this as an object so it can be read when you getById
                 vm.editMode = null;
                 vm.editMode = null;
@@ -261,13 +286,42 @@
                     $window.scrollTo(0, 0);
 
                     var isAdmin = true;
-                    vm.dealerAccountInfoService.setPrefix(isAdmin);
 
                     vm.$log.debug("Angular Ready");
 
                 }
+
+                function _onDealerFormSubmit (){
+                    vm.showNewDealerFormErrors = true;
+
+                    if (vm.dealerRegForm.$valid) {
+
+                        vm.dealerAccountInfoService.insert(vm.data, _onDealerCreateSuccess, _onDealerCreateError);
+                    } else {
+                        vm.adminNotifications.error("An error has occured!", "Error");
+                    }
+                }
+
+                function _onDealerFormReset (){
+                
+                }
+
+                function _onDealerCreateSuccess(data) {
+
+                    vm.notify(function () { // Notify is only used if we're updating the html template
+                        vm.$log.debug(data);
+                        vm.adminNotifications.success("Registration  submitted!", "Success");
+                        vm.profileMensBudgetsService.$window.location.href = "/profiles#/address";
+                
+                        //vm.showNewBudgetFormErrors = false;
+                    });
+                }
+
+                function _onDealerCreateError() {
+                    vm.adminNotifications.error("An error has occured!", "Error");
+                }
             }
         })();
-    </script>*@
+    </script>
 
 }

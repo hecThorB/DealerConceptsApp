@@ -6,7 +6,8 @@
         'ui.bootstrap',
         'ngRoute',
         'ngAnimate',
-        'toastr'
+        'toastr',
+        'ngSanitize'
     ];
 
     var arrOfDep = getModuleDependencies(moduleOptions, defaultDependencies);

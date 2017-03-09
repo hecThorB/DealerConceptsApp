@@ -42,7 +42,11 @@
     <!-- CSS Customization -->
     <link rel="stylesheet" href="/assets/css/custom.css">
 
-    <!-- CSS-->
+    <!-- Notification CSS -->
+    <link href="~/Content/consumerSweetAlert/css/sweetalert.css" rel="stylesheet" />
+    <link href="~/Content/consumerToastr/css/toastr.min.css" rel="stylesheet" />
+   
+     <!-- CSS-->
     <style>
     </style>
     @RenderSection("styles", false)
@@ -1035,6 +1039,7 @@
     <!--=== End Style Switcher ===-->
     <!-- JS Global Compulsory -->
     <script type="text/javascript" src="/assets/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
     <script type="text/javascript" src="/assets/plugins/jquery/jquery-migrate.min.js"></script>
     <script type="text/javascript" src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- JS Implementing Plugins -->
@@ -1054,16 +1059,9 @@
     <!--Angular Base-->
     <script src="~/Scripts/angular.min.js"></script>
     
-    <script type="text/javascript">
-        var APPNAME = 'DealerConceptsApp';
-    </script>
-
-    <script type="text/javascript">
-        angular.module(APPNAME, []);
-    </script>
-    <script src="~/Scripts/ng/baseController.js"></script>
+    
     <script src="~/Scripts/dealerConcepts.js"></script>
-    <script src="~/Scripts/dealerConcepts.ng.app.js"></script>
+
     <!--[if lt IE 9]>
     <script src="/assets/plugins/respond.js"></script>
     <script src="/assets/plugins/html5shiv.js"></script>
@@ -1078,10 +1076,19 @@
     <script src="~/Scripts/bower_components/angular-toastr/dist/angular-toaster.tpls.js"></script>
     <script src="~/Scripts/bower_components/angular-route/angular-route.js"></script>
 
-    <script src="~/Scripts/dealerConcepts/core/controller/base.controller.js"></script>
+    <script src="~/Scripts/ng/angular-sanitize.min.js"></script>
+
+    <script src="~/Scripts/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="~/Scripts/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="~/Scripts/bower_components/angular-animate/angular-animate.js"></script>
+    
+    <script src="~/Scripts/dealerConcepts/dealer.module.js"></script>
+     <script src="~/Scripts/dealerConcepts/core/controller/base.controller.js"></script>
     <script src="~/Scripts/dealerConcepts/core/services/alert.service.js"></script>
     <script src="~/Scripts/dealerConcepts/core/services/base.service.js"></script>
     <script src="~/Scripts/dealerConcepts/core/services/systemEvent.service.js"></script>
+
+    @*<script src="~/Scripts/bower_components/angular/angular.js"></script>*@
 
     @RenderSection("scripts", false)
     <script type="text/javascript">

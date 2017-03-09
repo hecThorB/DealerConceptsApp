@@ -4,7 +4,7 @@
 
     angular.module(APPNAME).controller('DealerRegistrationController', DealerRegistrationController);
 
-    DealerRegistrationController.$inject = ['$scope', '$baseController', 'dealerRegistrationEnums', 'adminNotifications', 'model', '$window'];
+    DealerRegistrationController.$inject = ['$scope', 'dealerRegistrationEnums', 'adminNotifications', 'model', '$window'];
 
     function DealerRegistrationController(
         $scope

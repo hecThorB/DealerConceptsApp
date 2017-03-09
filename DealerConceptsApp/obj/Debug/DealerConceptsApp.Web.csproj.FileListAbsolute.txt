@@ -104,3 +104,13 @@ C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp
 C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\AngleSharp.dll
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\DataAnnotationsExtensions.dll
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\Faker.NET4.dll
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\Glimpse.AspNet.dll
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\Glimpse.Core.dll
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\Glimpse.Mvc5.dll
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\HtmlSanitizer.dll
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\JWT.dll
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\AngleSharp.xml
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\de-DE\Faker.NET4.resources.dll

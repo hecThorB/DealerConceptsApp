@@ -12,7 +12,7 @@ using System.Web.Http;
 
 namespace DealerConceptsApp.Controllers.Api
 {
-    [RoutePrefix("api/dealer")]
+    [RoutePrefix("api/dealers")]
     public class DealerAccountInfoApiController : BaseApiController
     {
         private IDealerAccountInfoService _dealerAccountInfoService = null;
