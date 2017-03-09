@@ -3,14 +3,14 @@ dealerConcepts.services.dealerAccountInfo.apiPrefix = "api/dealer";
 dealerConcepts.services.dealerAccountInfo.apiPrefixAdmin = "/api/v2/admin/dealers";
 dealerConcepts.services.dealerAccountInfo.apiPrefixKiosk = "/api/dealers/";
 
-//dealerConcepts.services.dealerAccountInfo.setPrefix = function (isAdmin) {
-//    if (isAdmin) {
-//        dealerConcepts.services.dealerAccountInfo.apiPrefix = dealerConcepts.services.dealerAccountInfo.apiPrefixAdmin;
-//    }
-//    else {
-//        dealerConcepts.services.dealerAccountInfo.apiPrefix = dealerConcepts.services.dealerAccountInfo.apiPrefixKiosk;
-//    }
-//}
+dealerConcepts.services.dealerAccountInfo.setPrefix = function (isAdmin) {
+    if (isAdmin) {
+        dealerConcepts.services.dealerAccountInfo.apiPrefix = dealerConcepts.services.dealerAccountInfo.apiPrefixAdmin;
+    }
+    else {
+        dealerConcepts.services.dealerAccountInfo.apiPrefix = dealerConcepts.services.dealerAccountInfo.apiPrefixKiosk;
+    }
+}
 
 dealerConcepts.services.dealerAccountInfo.insert = function (data, onSuccess, onError) {
     var url = "api/dealers/accountinfo";
@@ -26,9 +26,8 @@ dealerConcepts.services.dealerAccountInfo.insert = function (data, onSuccess, on
     };
     $.ajax(url, settings);
 
-}
+};
 
-var coolDude = "cooolio";
 
 (function () {
     if (angular) {
