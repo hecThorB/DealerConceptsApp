@@ -7,11 +7,17 @@ using System.Web.Mvc;
 namespace DealerConceptsApp.Controllers
 {
     [RoutePrefix("dealers")]
-    public class DealerAccountInfoController : Controller
+    public class DealerAccountInfoController : BaseController
     {
         // GET: DealerAccountInfo
         [Route("create")]
         public ActionResult CreateAccount()
+        {
+            return View();
+        }
+
+        [Route("password")]
+        public ActionResult CreatePassword()
         {
             return View();
         }

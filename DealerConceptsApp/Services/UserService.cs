@@ -61,5 +61,22 @@ namespace DealerConceptsApp.Services
 
         }
 
+        public IList<string> GetCurrentRoles()
+        {
+            return GetRoles(GetCurrentUserId());
+        }
+
+        public IList<string> GetRoles(string userId)
+        {
+            if (String.IsNullOrEmpty(userId))
+            {
+                return null;
+
+            }
+
+            ApplicationUserManager userManager = GetUserManager();
+
+            return userManager.GetRoles(userId);
+        }
     }
 }

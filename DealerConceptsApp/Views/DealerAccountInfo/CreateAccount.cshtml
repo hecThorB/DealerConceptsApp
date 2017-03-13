@@ -20,7 +20,7 @@
         <div class="row margin-bottom-40">
             <div class="col-md-12">
                 <!-- Reg-Form -->
-                <form action="#" id="dealerRegForm" class="sky-form" name="dealer.dealerRegForm" ng-submit="dealer.onDealerFormSubmit()" novalidate>
+                <form id="dealerRegForm" class="sky-form" name="dealer.dealerRegForm" ng-submit="dealer.onDealerFormSubmit()" novalidate>
                     <header>Dealer Registration Form</header>
 
                     <fieldset>
@@ -94,21 +94,23 @@
                         </div>
 
 
-                        
+
                         <div class="row">
                             <section class="col-md-12">
                                 <label class="input">
                                     <input type="text" ng-model="dealer.data.email" name="email" id="inputEmail" placeholder="Email"
-                                           ng-class="{'error': dealer.showNewDealerFormErrors && dealer.dealerForm.email.$invalid}" required>
+                                           ng-class="{'error': dealer.showNewDealerFormErrors && dealer.dealerForm.email.$invalid}" required ng-maxlength="256">
                                 </label>
                                 <div role="alert" class="help-inline error">
-                                    <span class="error" ng-show="dealer.showNewDealerFormErrors && dealer.dealerForm.email.$error.required">Email is required</span>
+                                    <span class="error" ng-show="dealer.showNEmailErrors && dealer.dealerForm.email.$error.required">Email is required</span>
+                                    <span class="error" ng-show="dealer.showEmailErrors && dealer.dealerForm.email.$error.email">Must be valid email address</span>
+                                    <span class="error" ng-show="dealer.showEmailErrors && dealer.dealerForm.email.$error.maxlength">Email must be less than 256 characters</span>
                                 </div>
                             </section>
                         </div>
 
                         <div class="row">
-                            <section class="col col-md-12">
+                            <section class="col-md-12">
                                 <label class="input">
                                     <input type="text" ng-model="dealer.data.phoneNumber" name="phoneNumber" id="inputPhoneNumber" placeholder="Phone Number"
                                            ng-class="{'error': dealer.showNewDealerFormErrors && dealer.dealerForm.phoneNumber.$invalid}" required>
@@ -118,18 +120,11 @@
                                 </div>
                             </section>
                         </div>
-
                     </fieldset>
-
                     <fieldset>
-                        @*<section>
-                                <label class="checkbox"><input type="checkbox" name="terms" id="terms"><i></i>I agree with the Terms and Conditions</label>
-                            </section>*@
-
-
                         <!-- Modal for Terms and Conditions-->
-                        <button class="btn-u margin-bottom-5" data-toggle="modal" data-target="#responsive">Terms and Conditions</button>
-                        <label class="checkbox"><input type="checkbox" name="terms" id="terms"><i></i>I agree with the Terms and Conditions</label>
+                        <button type="button" class="btn-u margin-bottom-5" data-toggle="modal" data-target="#responsive">Terms and Conditions</button>
+                        <label class="checkbox"><input type="checkbox" ng-model="dealer.termsAndCondBox" name="terms" id="terms"><i></i>I agree with the Terms and Conditions</label>
                         <div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -154,7 +149,6 @@
                             </div>
                         </div>
                     </fieldset>
-
                     <footer>
                         <button type="submit" class="btn-u" id="dealerSignUpButton">{{dealer.submitButton}}</button>
                     </footer>
@@ -267,6 +261,9 @@
                 vm.editMode = null;
                 vm.editMode = null;
 
+                // Check Box
+                vm.termsAndCondBox = false;
+
                 // Functions
                 vm.onDealerFormSubmit = _onDealerFormSubmit;
                 vm.OnDealerFormReset = _onDealerFormReset;
@@ -285,26 +282,20 @@
                 function _onDealerFormSubmit (){
                     vm.showNewDealerFormErrors = true;
 
-                    if (vm.dealerRegForm.$valid) {
-
+                    if (vm.dealerRegForm.$valid && vm.termsAndCondBox) {
                         vm.dealerAccountInfoService.insert(vm.data, _onDealerCreateSuccess, _onDealerCreateError);
                     } else {
-                        vm.adminNotifications.error("An error has occured!", "Error");
+                            vm.adminNotifications.error("Please fill out all fields and agree to Terms and Conditions", "Error");
                     }
                 }
 
                 function _onDealerFormReset (){
-                
+
                 }
 
                 function _onDealerCreateSuccess(data) {
+                    vm.adminNotifications.success("Registration  submitted!", "Success");
 
-                    vm.notify(function () { // Notify is only used if we're updating the html template
-                        vm.$log.debug(data);
-                        vm.adminNotifications.success("Registration  submitted!", "Success");
-                
-                        //vm.showNewBudgetFormErrors = false;
-                    });
                 }
 
                 function _onDealerCreateError() {

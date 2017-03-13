@@ -9,6 +9,6 @@ namespace DealerConceptsApp.Models.ViewModels
     {
         public string Name { get; set; }
 
-        public string Kinds { get; set; }
+        public Object Kinds { get; set; }
     }
 }

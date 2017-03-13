@@ -280,8 +280,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\BaseApiController.cs" />
     <Compile Include="Controllers\Api\DealerAccountInfoApiController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DealerAccountInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JsBuilderController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfileAccountInfoController.cs" />
     <Compile Include="Domain\DealerAccountInfo.cs" />
@@ -5674,10 +5676,13 @@
     <Content Include="Views\Shared\_layoutDealer.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\DealerAccountInfo\CreateAccount.cshtml" />
+    <Content Include="Views\JsBuilder\Dynamic.cshtml" />
+    <Content Include="Views\DealerAccountInfo\CreatePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\BaseResponse\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\ProfileAccountInfo\" />
   </ItemGroup>
   <ItemGroup>

@@ -11,5 +11,11 @@ namespace DealerConceptsApp.Services.Interfaces
         string GetCurrentUserId();
 
         IdentityUser GetCurrentUser();
+
+        bool IsLoggedIn();
+
+        IList<string> GetCurrentRoles();
+
+        IList<string> GetRoles(string userId);
     }
 }
