@@ -280,6 +280,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\BaseApiController.cs" />
     <Compile Include="Controllers\Api\DealerAccountInfoApiController.cs" />
+    <Compile Include="Controllers\Api\UserRegistrationApiController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DealerAccountInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -5623,6 +5624,7 @@
     <Content Include="Scripts\dealerConcepts\services\admin\dealerConcepts.services.admin.notifications.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dealerConcepts\services\dealerConcepts.services.dealerAccountInfo.js" />
+    <Content Include="Scripts\dealerConcepts\services\dealerConcepts.services.users.js" />
     <Content Include="Scripts\dealerConcepts\services\kiosk\dealerConcepts.services.kiosk.notifications.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -5684,6 +5686,7 @@
     <Folder Include="Views\BaseResponse\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\ProfileAccountInfo\" />
+    <Folder Include="Views\UserRegistrationApi\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

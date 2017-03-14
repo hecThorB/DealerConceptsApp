@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using DealerConceptsApp.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,22 @@ namespace DealerConceptsApp.Services.Interfaces
 
         bool IsLoggedIn();
 
+        bool Logout();
+
         IList<string> GetCurrentRoles();
 
         IList<string> GetRoles(string userId);
+
+        IdentityUser CreateUser(string email, string password, string roleName = "Dealer");
+
+        bool ChangePassword(string userId, string newPassword);
+
+        bool IsValidToken(Guid token);
+
+        string UpdateConfirmation(Guid token);
+
+        ApplicationUser GetUser(string emailaddress);
+
+        ApplicationUser UpdateUserById(string userId);
     }
 }
