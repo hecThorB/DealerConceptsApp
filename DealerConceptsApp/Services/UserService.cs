@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 
+using DealerConceptsApp.Classes;
 using DealerConceptsApp.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ using DealerConceptsApp.Models.Request;
 using System.Data.SqlClient;
 using System.Data;
 using DealerConceptsApp.Classes.Exceptions;
+using DealerConceptsApp.Domain;
+using WikiDataProvider.Data.Extensions;
 
 namespace DealerConceptsApp.Services
 {
@@ -29,7 +32,190 @@ namespace DealerConceptsApp.Services
         }
 
         #region - IAdminUserService -
-        
+
+        public AdminUser MapAdminUsers(IDataReader reader)
+        {
+            AdminUser currentUser = new AdminUser();
+
+            int startingIndex = 0; //startingOrdinal
+            currentUser.Id = reader.GetSafeInt32(startingIndex++);
+            currentUser.UserId = reader.GetSafeString(startingIndex++);
+            currentUser.DateCreated = reader.GetSafeDateTime(startingIndex++);
+            currentUser.DateModified = reader.GetSafeDateTime(startingIndex++);
+            currentUser.FirstName = reader.GetSafeString(startingIndex++);
+            currentUser.LastName = reader.GetSafeString(startingIndex++);
+            currentUser.Email = reader.GetSafeString(startingIndex++);
+            currentUser.PhoneNumber = reader.GetSafeString(startingIndex++);
+            currentUser.IsBlocked = reader.GetSafeBool(startingIndex++);
+            return currentUser;
+        }
+
+        //GET ALL
+        public List<AdminUser> GetAllUsers()
+        {
+            List<AdminUser> list = null;
+            DataProvider.ExecuteCmd(
+                GetConnection,
+                "dbo.DealerAccountInfo_ProfileBasics_JoinByIsDeleted",
+                inputParamMapper: delegate (SqlParameterCollection parameters)
+                {
+                },
+                map: delegate (IDataReader reader, short set)
+                {
+                    AdminUser currentUser = MapAdminUsers(reader);
+                    if (list == null)
+                    {
+                        list = new List<AdminUser>();
+                    }
+                    list.Add(currentUser);
+                });
+            return list;
+        }
+
+        //UPDATE
+        public void UpdateUser(AdminUserUpdateRequest existingUser)
+        {
+            DataProvider.ExecuteNonQuery(GetConnection, "[dbo].[AdminUserIsBlocked_Update]",
+                inputParamMapper: delegate (SqlParameterCollection parameters)
+                {
+                    parameters.AddWithValue("@Id", existingUser.Id);
+                    parameters.AddWithValue("@IsBlocked", existingUser.IsBlocked);
+                });
+        }
+
+        //PAGINATION
+        public PagedList<AdminUser> GetUsersByPageIndex(int pageIndex, int itemsPerPage)
+        {
+            PagedList<AdminUser> pagedList = null;
+            List<AdminUser> UsersList = null;
+            int totalCount;
+
+            DataProvider.ExecuteCmd(
+                GetConnection,
+                "[dbo].[Profile_Account_SelectAll_for_Pagination]",
+                inputParamMapper: delegate (SqlParameterCollection parameters)
+                {
+                    parameters.AddWithValue("@PageIndex", pageIndex);
+                    parameters.AddWithValue("@NumberOfRecords", itemsPerPage);
+
+                },
+                map: delegate (IDataReader reader, short set)
+                {
+                    AdminUser userInfo = new AdminUser();
+                    int startingIndex = 0;
+
+                    userInfo.Id = reader.GetSafeInt32(startingIndex++);
+                    userInfo.UserId = reader.GetSafeString(startingIndex++);
+                    userInfo.DateCreated = reader.GetSafeDateTime(startingIndex++);
+                    userInfo.DateModified = reader.GetSafeDateTime(startingIndex++);
+                    userInfo.FirstName = reader.GetSafeString(startingIndex++);
+                    userInfo.LastName = reader.GetSafeString(startingIndex++);
+                    userInfo.Email = reader.GetSafeString(startingIndex++);
+                    userInfo.PhoneNumber = reader.GetSafeString(startingIndex++);
+                    userInfo.IsBlocked = reader.GetSafeBool(startingIndex++);
+                    totalCount = reader.GetSafeInt32(startingIndex++);
+
+                    if (UsersList == null)
+                    {
+                        UsersList = new List<AdminUser>();
+                    }
+                    UsersList.Add(userInfo);
+                    if (pagedList == null)
+                    {
+                        pagedList = new PagedList<AdminUser>(UsersList, pageIndex, itemsPerPage, totalCount);
+                    }
+                });
+            return pagedList;
+        }
+
+        //PAGINATION BY SEARCH
+        public PagedList<AdminUser> GetUsersBySearchWord(int pageIndex, int itemsPerPage, string searchText)
+        {
+            PagedList<AdminUser> searchPagedList = null;
+            List<AdminUser> SearchList = null;
+            int totalCount;
+
+            DataProvider.ExecuteCmd(
+                GetConnection,
+                "[dbo].[Profile_Account_Search]",
+                inputParamMapper: delegate (SqlParameterCollection parameters)
+                {
+                    parameters.AddWithValue("@PageIndex", pageIndex);
+                    parameters.AddWithValue("@NumberOfRecords", itemsPerPage);
+                    parameters.AddWithValue("@SearchText", searchText);
+                },
+                map: delegate (IDataReader reader, short set)
+                {
+                    AdminUser searchInfo = new AdminUser();
+                    int startingIndex = 0;
+
+                    searchInfo.Id = reader.GetSafeInt32(startingIndex++);
+                    searchInfo.UserId = reader.GetSafeString(startingIndex++);
+                    searchInfo.DateCreated = reader.GetSafeDateTime(startingIndex++);
+                    searchInfo.DateModified = reader.GetSafeDateTime(startingIndex++);
+                    searchInfo.FirstName = reader.GetSafeString(startingIndex++);
+                    searchInfo.LastName = reader.GetSafeString(startingIndex++);
+                    searchInfo.Email = reader.GetSafeString(startingIndex++);
+                    searchInfo.PhoneNumber = reader.GetSafeString(startingIndex++);
+                    searchInfo.IsBlocked = reader.GetSafeBool(startingIndex++);
+                    totalCount = reader.GetSafeInt32(startingIndex++);
+
+                    if (SearchList == null)
+                    {
+                        SearchList = new List<AdminUser>();
+                    }
+                    SearchList.Add(searchInfo);
+                    if (searchPagedList == null)
+                    {
+                        searchPagedList = new PagedList<AdminUser>(SearchList, pageIndex, itemsPerPage, totalCount);
+                    }
+                });
+            return searchPagedList;
+        }
+
+        //REMOVE ROLE ID
+        public void DeleteSalesPerson(string userId, string roleId, bool isShopper)
+        {
+            DataProvider.ExecuteNonQuery(GetConnection, "dbo.Asp_Net_User_Role_Delete",
+                inputParamMapper: delegate (SqlParameterCollection parameters)
+                {
+                    parameters.AddWithValue("@UserId", userId);
+                    parameters.AddWithValue("@RoleId", roleId);
+                    parameters.AddWithValue("@IsSalesPerson", isShopper);
+                });
+        }
+
+        public List<string> GetSiteEmails()
+        {
+
+            List<string> lst = null;
+
+            DataProvider.ExecuteCmd(
+                GetConnection,
+                "[dbo].[Dealer_Account_Search]",
+                inputParamMapper: delegate (SqlParameterCollection parameters)
+                {
+
+                },
+                map: delegate (IDataReader reader, short set)
+                {
+
+                    int startingIndex = 0;
+
+
+                    string email = reader.GetSafeString(startingIndex);
+
+                    if (lst == null)
+                    {
+                        lst = new List<string>();
+                    }
+
+                    lst.Add(email);
+
+                });
+
+            return lst;
+        }
 
 
         #endregion
@@ -301,7 +487,7 @@ namespace DealerConceptsApp.Services
             return user;
         }
 
-        public bool ChangePassWord(string userId, string newPassword)
+        public bool ChangePassword(string userId, string newPassword)
         {
             bool result = false;
 
