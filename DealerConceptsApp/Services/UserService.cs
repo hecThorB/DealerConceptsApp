@@ -19,16 +19,16 @@ using WikiDataProvider.Data.Extensions;
 
 namespace DealerConceptsApp.Services
 {
-    public class UserService : BaseService , IUserService
+    public class UserService : BaseService , IUserService, IAdminUserService
     {
-        private IConfigService _config;
         private IMessageService _messageService;
+        private IConfigService _config;
         private static Dictionary<string, string> _roles;
 
-        public UserService(IConfigService config, IMessageService messageService)
+        public UserService(IMessageService messageService, IConfigService config)
         {
-            _config = config;
             _messageService = messageService;
+            _config = config;
         }
 
         #region - IAdminUserService -
@@ -171,6 +171,26 @@ namespace DealerConceptsApp.Services
                     }
                 });
             return searchPagedList;
+        }
+
+        //CREATE ROLE ID
+        public string CreateRoleId(AspNetUserRoleCreateRequest newRoleId)
+        {
+            string result = null;
+            DataProvider.ExecuteNonQuery(GetConnection, "Asp_Net_User_Role_Insert",
+                inputParamMapper: delegate (SqlParameterCollection parameters)
+                {
+                    parameters.AddWithValue("@UserId", newRoleId.UserId);
+                    parameters.AddWithValue("@RoleId", newRoleId.RoleId);
+                    parameters.AddWithValue("@IsShopper", newRoleId.IsSalesPerson);
+
+
+                },
+                returnParameters: delegate (SqlParameterCollection parameters)
+                {
+                    result = parameters["@UserId"].Value.ToString();
+                });
+            return result;
         }
 
         //REMOVE ROLE ID

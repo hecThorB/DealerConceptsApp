@@ -133,6 +133,22 @@
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid, Version=9.0.12.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.9.0.12\lib\net452\SendGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid.CSharp.HTTP.Client, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.CSharp.HTTP.Client.3.1.0\lib\SendGrid.CSharp.HTTP.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid.SmtpApi, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.SmtpApi.1.3.2\lib\SendGrid.SmtpApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -208,9 +224,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -274,9 +287,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Classes\Exceptions\IdentityResultException.cs" />
     <Compile Include="Classes\Extensions\DictionaryExt.cs" />
     <Compile Include="Classes\Extensions\EnumExt.cs" />
     <Compile Include="Classes\Extensions\HtmlHelperExt.cs" />
+    <Compile Include="Classes\PagedList.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\BaseApiController.cs" />
     <Compile Include="Controllers\Api\DealerAccountInfoApiController.cs" />
@@ -287,9 +302,15 @@
     <Compile Include="Controllers\JsBuilderController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfileAccountInfoController.cs" />
+    <Compile Include="Domain\AdminUser.cs" />
     <Compile Include="Domain\DealerAccountInfo.cs" />
+    <Compile Include="Domain\Message.cs" />
+    <Compile Include="Domain\MessageContainer.cs" />
     <Compile Include="Enums\AdminTitleKind.cs" />
     <Compile Include="Enums\DealershipKind.cs" />
+    <Compile Include="Enums\EmailTemplateKind.cs" />
+    <Compile Include="Enums\MessageStatusKind.cs" />
+    <Compile Include="Enums\MessageTypeKind.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -297,8 +318,16 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Request\AdminUserUpdateRequest.cs" />
+    <Compile Include="Models\Request\AspNetUserRoleCreateRequest.cs" />
     <Compile Include="Models\Request\DealerAccountInfoCreateRequest.cs" />
     <Compile Include="Models\Request\DealerAccountInfoUpdateRequest.cs" />
+    <Compile Include="Models\Request\MessageCreateRequest.cs" />
+    <Compile Include="Models\Request\MessageGetRequest.cs" />
+    <Compile Include="Models\Request\MessageQueryRequest.cs" />
+    <Compile Include="Models\Request\UserPasswordRecover.cs" />
+    <Compile Include="Models\Request\UserPasswordRequest.cs" />
+    <Compile Include="Models\Request\UserRegistrationCreateRequest.cs" />
     <Compile Include="Models\Responses\BaseResponse.cs" />
     <Compile Include="Models\Responses\ErrorResponse.cs" />
     <Compile Include="Models\Responses\ItemResponse.cs" />
@@ -316,10 +345,16 @@
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\ConfigService.cs" />
     <Compile Include="Services\DealerAccountInfoService.cs" />
+    <Compile Include="Services\Interfaces\IAdminMessageService.cs" />
+    <Compile Include="Services\Interfaces\IAdminUserService.cs" />
     <Compile Include="Services\Interfaces\IConfigService.cs" />
     <Compile Include="Services\Interfaces\IDealerAccountInfoService.cs" />
+    <Compile Include="Models\Request\IMessage.cs" />
+    <Compile Include="Services\Interfaces\IMessageService.cs" />
+    <Compile Include="Services\Interfaces\ISignInService.cs" />
     <Compile Include="Services\Interfaces\IStorageService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
+    <Compile Include="Services\MessageService.cs" />
     <Compile Include="Services\Storage\CloudStorageService.cs" />
     <Compile Include="Services\Storage\LocalStorageService.cs" />
     <Compile Include="Services\UserService.cs" />

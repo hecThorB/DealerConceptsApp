@@ -114,3 +114,10 @@ C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp
 C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\JWT.dll
 C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\AngleSharp.xml
 C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\de-DE\Faker.NET4.resources.dll
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\SendGrid.CSharp.HTTP.Client.dll
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\SendGrid.dll
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\SendGrid.SmtpApi.dll
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\SendGrid.pdb
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\SendGrid.xml
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\SendGrid.CSharp.HTTP.Client.pdb
+C:\Users\Melania Beltran\documents\visual studio 2015\Projects\DealerConceptsApp\DealerConceptsApp\bin\SendGrid.SmtpApi.pdb

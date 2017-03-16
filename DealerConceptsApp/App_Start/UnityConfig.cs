@@ -20,6 +20,8 @@ namespace DealerConceptsApp
 
             container.RegisterType<IConfigService, ConfigService>();
 
+            container.RegisterType<IMessageService, MessageService>();
+
             container.RegisterType<IDealerAccountInfoService, DealerAccountInfoService>();
 
             container.RegisterType<IUserService, UserService>();
