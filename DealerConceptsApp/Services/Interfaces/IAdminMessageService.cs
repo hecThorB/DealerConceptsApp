@@ -11,16 +11,16 @@ namespace DealerConceptsApp.Services.Interfaces
 {
     public interface IAdminMessageService
     {
-        PagedList<Message> Get(int pageIndex, int itemsPerPage, MessageGetRequest model);
+        //PagedList<Message> Get(int pageIndex, int itemsPerPage, MessageGetRequest model);
 
-        PagedList<Message> GetByUserId(int pageIndex, int itemsPerPage, string userId, MessageGetRequest model);
+        //PagedList<Message> GetByUserId(int pageIndex, int itemsPerPage, string userId, MessageGetRequest model);
 
-        List<MessageContainer> GetTotal(MessageGetRequest model);
+        //List<MessageContainer> GetTotal(MessageGetRequest model);
 
-        List<MessageContainer> GetTotalByUserId(MessageGetRequest model, string userId);
+        //List<MessageContainer> GetTotalByUserId(MessageGetRequest model, string userId);
 
-        PagedList<Message> GetByQuery(int pageIndex, int itemsPerPage, MessageQueryRequest model);
+        //PagedList<Message> GetByQuery(int pageIndex, int itemsPerPage, MessageQueryRequest model);
 
-        PagedList<Message> GetByQueryAndUserId(string userId, int pageIndex, int itemsPerPage, MessageQueryRequest model);
+        //PagedList<Message> GetByQueryAndUserId(string userId, int pageIndex, int itemsPerPage, MessageQueryRequest model);
     }
 }
