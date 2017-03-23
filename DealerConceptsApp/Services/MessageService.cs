@@ -29,7 +29,7 @@ namespace DealerConceptsApp.Services
 
         public void Send(IMessage model)
         {
-            EmailAddress from = new EmailAddress(model.FromAddress ?? "adminfoundit@mailinator.com");
+            EmailAddress from = new EmailAddress(model.FromAddress ?? "admindealerconcepts@mailinator.com");
             EmailAddress to = new EmailAddress(model.ToAddress ?? "catslovedogs@mailinator.com");
             Content content = new Content("text/html", model.Body);
 
@@ -68,10 +68,10 @@ namespace DealerConceptsApp.Services
             switch (issue)
             {
                 case EmailTemplateKind.TestDrive:
-                    body = File.ReadAllText(HttpContext.Current.Server.MapPath("/Views/EmailTemplates/NewFindNotification.html"));
+                    body = File.ReadAllText(HttpContext.Current.Server.MapPath("/Views/EmailTemplates/-----.html"));
                     break;
                 case EmailTemplateKind.MultipleTestDrivesIntended:
-                    body = File.ReadAllText(HttpContext.Current.Server.MapPath("/Views/EmailTemplates/NewRequest.html"));
+                    body = File.ReadAllText(HttpContext.Current.Server.MapPath("/Views/EmailTemplates/-----.html"));
                     break;
                 default:
                     body = "Please Select File";

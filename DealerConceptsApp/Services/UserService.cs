@@ -56,7 +56,7 @@ namespace DealerConceptsApp.Services
             List<AdminUser> list = null;
             DataProvider.ExecuteCmd(
                 GetConnection,
-                "dbo.DealerAccountInfo_ProfileBasics_JoinByIsDeleted",
+                "dbo.ProfileAccountInfo_SelectAll",
                 inputParamMapper: delegate (SqlParameterCollection parameters)
                 {
                 },
@@ -92,7 +92,7 @@ namespace DealerConceptsApp.Services
 
             DataProvider.ExecuteCmd(
                 GetConnection,
-                "[dbo].[Profile_Account_SelectAll_for_Pagination]",
+                "[dbo].[Dealer_Account_SelectAll_for_Pagination]",
                 inputParamMapper: delegate (SqlParameterCollection parameters)
                 {
                     parameters.AddWithValue("@PageIndex", pageIndex);

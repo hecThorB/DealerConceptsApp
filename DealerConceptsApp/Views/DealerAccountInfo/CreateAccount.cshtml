@@ -166,7 +166,7 @@
     <!------------------------------------NOTIFICATIONS---------------------------------------------->
     <script src="~/Scripts/dealerConcepts/services/admin/dealerConcepts.services.admin.notifications.js"></script>
     <script src="~/Scripts/dealerConcepts/services/dealerConcepts.services.dealerAccountInfo.js"></script>
-    <script src="~/Controllers/JsBuilderController.cs"></script>
+    <script src="~/dynamic/js/dealers/create"></script>
     <!-- Angular Controller-->
     <script type="text/javascript">
         (function () {
@@ -193,27 +193,6 @@
     </script>
 
     <script type="text/javascript">
-        (function () {
-            "use strict";
-
-            angular.module(APPNAME).factory('dealerRegistrationEnums', dealerRegistrationEnums);
-
-            dealerRegistrationEnums.$inject = ['$baseService'];
-
-            function dealerRegistrationEnums($baseService) {
-                var dealerRegistrationEnumsObject = {
-
-                    dealershipKindEnum : @typeof(DealershipKind).EnumToJson(1),
-                    titleKindEnum : @typeof(AdminTitleKind).EnumToJson(1),
-                }
-
-                var service = $baseService.merge(true, {}, dealerRegistrationEnumsObject, $baseService);
-                return service;
-            }
-        }());
-    </script>
-
-    <script type="text/javascript">
         // Dealer Registration JS
         (function () {
             "use strict";
@@ -223,7 +202,7 @@
             DealerRegistrationController.$inject = [
                 '$scope'
                 , '$baseController'
-                , 'dealerRegistrationEnums'
+                , 'dealerRegistrationKind'
                 , 'dealerAccountInfoService'
                 , 'adminNotifications'
                 , '$window'];
@@ -231,7 +210,7 @@
             function DealerRegistrationController(
                 $scope
                 , $baseController
-                , dealerRegistrationEnums
+                , dealerRegistrationKind
                 , dealerAccountInfoService
                 , adminNotifications
                 , $window) {
@@ -245,12 +224,12 @@
                 // Services
                 vm.dealerAccountInfoService = dealerAccountInfoService;
                 vm.notify = vm.dealerAccountInfoService.getNotifier($scope);
-                vm.dealerRegistrationEnums = dealerRegistrationEnums;
+                vm.dealerRegistrationKind = dealerRegistrationKind.kinds;
                 vm.adminNotifications = adminNotifications;
 
                 // Drop Downs
-                vm.dealerDropDown = vm.dealerRegistrationEnums.dealershipKindEnum;
-                vm.titleDropDown = vm.dealerRegistrationEnums.titleKindEnum;
+                vm.dealerDropDown = vm.dealerRegistrationKind.dealerByName;
+                vm.titleDropDown = vm.dealerRegistrationKind.adminByName;
 
                 // Variables
                 vm.showNewDealerFormErrors = false;
