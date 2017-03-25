@@ -17,10 +17,10 @@ namespace DealerConceptsApp.Services.Interfaces
 
         DealerAccountInfo SelectById(int id);
 
-        //DealerAccountInfo SelectByUserId(string currentUser);
+        DealerAccountInfo SelectByUserId(string currentUser);
 
         List<DealerAccountInfo> GetAllDealerAccountInfo();
 
-        //DealerAccountInfo SelectByEmail(string email);
+        DealerAccountInfo SelectByEmail(string email);
     }
 }

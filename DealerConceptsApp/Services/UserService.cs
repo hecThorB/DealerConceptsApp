@@ -299,7 +299,7 @@ namespace DealerConceptsApp.Services
                 MessageCreateRequest newUserAdminMsg = new MessageCreateRequest();
 
                 newUserAdminMsg.ToAddress = _config.SiteAdminEmail;
-                newUserAdminMsg.Subject = "You have a new Found!t Customer";
+                newUserAdminMsg.Subject = "You have a new Dealer Concepts user";
 
                 _messageService.NewCustomerToAdmin(newUserAdminMsg, email);
 

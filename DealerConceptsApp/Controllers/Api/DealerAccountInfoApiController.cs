@@ -25,6 +25,7 @@ namespace DealerConceptsApp.Controllers.Api
         } 
 
         [Route("accountinfo"), HttpPost]
+        [AllowAnonymous]
         public HttpResponseMessage Create(DealerAccountInfoCreateRequest model)
         {
             if(!IsValidRequest(model))

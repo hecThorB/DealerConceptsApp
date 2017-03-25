@@ -11,7 +11,7 @@ namespace DealerConceptsApp
     {
         public static void RegisterComponents(HttpConfiguration config)
         {
-			var container = new UnityContainer();
+			UnityContainer container = new UnityContainer();
 
             // register all your components with the container here
             // it is NOT necessary to register your controllers
@@ -25,6 +25,8 @@ namespace DealerConceptsApp
             container.RegisterType<IDealerAccountInfoService, DealerAccountInfoService>();
 
             container.RegisterType<IUserService, UserService>();
+
+            container.RegisterType<ISignInService, SignInService>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 

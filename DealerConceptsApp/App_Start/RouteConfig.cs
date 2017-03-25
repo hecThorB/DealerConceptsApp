@@ -13,8 +13,17 @@ namespace DealerConceptsApp
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            /* DealerConceptsMVC: Attribute routing is in View Controllers are enabled by the MapMvcAttributeRoutes call
+             * this line finds the Controllers in the application, then it reads the Route Attributes and 
+             * puts the appropriate data in the route table.
+             * 
+             * this route table is what is searched by the frame work to determine what to end point to use
+
+             */
+
             routes.MapMvcAttributeRoutes();
 
+            //DealerConceptsMVC: this is the direct way to put something in the route table
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

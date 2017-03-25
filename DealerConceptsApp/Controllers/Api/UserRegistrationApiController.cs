@@ -4,12 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Web;
-using System.Web.Mvc;
 using DealerConceptsApp.Models.Responses;
 using DealerConceptsApp.Classes.Exceptions;
 using System.Net;
 using DealerConceptsApp.Models;
+using System.Web.Http;
 
 namespace DealerConceptsApp.Controllers.Api
 {
@@ -42,16 +41,20 @@ namespace DealerConceptsApp.Controllers.Api
 
                 if (signedIn)
                 {
+
                     ItemResponse<bool> responseData = new ItemResponse<bool>();
 
                     responseData.Item = signedIn;
                     responseData.IsSuccessful = true;
-                    return Request.CreateResponse(System.Net.HttpStatusCode.OK, responseData);
+                    return Request.CreateResponse(HttpStatusCode.OK, responseData);
+
                 }
                 else
                 {
                     throw new Exception("Unexpected error");
                 }
+
+
             }
             catch (IdentityResultException e)
             {
@@ -59,14 +62,17 @@ namespace DealerConceptsApp.Controllers.Api
 
                 ErrorResponse response = new ErrorResponse(e.Result.Errors);
 
-                return Request.CreateResponse(System.Net.HttpStatusCode.BadRequest, response);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, response);
             }
             catch (Exception ex)
             {
+
                 ErrorResponse exceptionResponse = new ErrorResponse(ex.Message);
 
                 return Request.CreateResponse(HttpStatusCode.BadRequest, exceptionResponse);
+
             }
+
         }
 
         [Route("logout"), HttpGet][AllowAnonymous]

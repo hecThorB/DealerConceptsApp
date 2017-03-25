@@ -132,6 +132,25 @@ namespace DealerConceptsApp.Services
             return accountInfo;
         }
 
+        public DealerAccountInfo SelectByUserId(string CurrentUser)
+        {
+            DealerAccountInfo accountInfo = null;
+
+            DataProvider.ExecuteCmd(
+                GetConnection,
+                "[dbo].[DealerAccountInfo_SelectByUserId]", // Still need to create this stored proc
+                inputParamMapper: delegate (SqlParameterCollection parameters)
+                {
+                    parameters.AddWithValue("@UserId", CurrentUser);
+                },
+
+                map: delegate (IDataReader reader, short set)
+                {
+                    accountInfo = MapProfile(reader);
+                });
+            return accountInfo;
+        }
+
         public void  DeleteDealerAccountInfo(int id)
         {
             DataProvider.ExecuteNonQuery(
@@ -145,6 +164,25 @@ namespace DealerConceptsApp.Services
                 {
                 }
                 );
+        }
+
+        public DealerAccountInfo SelectByEmail(string email)
+        {
+            DealerAccountInfo accountInfo = null;
+
+            DataProvider.ExecuteCmd(
+                GetConnection,               
+                "[dbo].[DealerAccountInfo_SelectByEmail]", // Need to create this stored proc
+                inputParamMapper: delegate (SqlParameterCollection parameters)
+                {
+                    parameters.AddWithValue("@Email", email);
+                },
+
+                map: delegate (IDataReader reader, short set)
+                {
+                    accountInfo = MapProfile(reader);
+                });
+            return accountInfo;
         }
     }
 }
