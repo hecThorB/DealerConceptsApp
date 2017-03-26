@@ -260,7 +260,7 @@ namespace DealerConceptsApp.Services
             AddUserToken(token, newUser);
         }
 
-        public IdentityUser CreateUser(string email, string password, string roleName = "Consumer")
+        public IdentityUser CreateUser(string email, string password, string roleName = "SalesPerson")
         {
             ApplicationUserManager userManager = GetUserManager();
 

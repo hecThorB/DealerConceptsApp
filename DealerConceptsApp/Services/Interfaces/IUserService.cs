@@ -21,7 +21,7 @@ namespace DealerConceptsApp.Services.Interfaces
 
         IList<string> GetRoles(string userId);
 
-        IdentityUser CreateUser(string email, string password, string roleName = "Consumer");
+        IdentityUser CreateUser(string email, string password, string roleName = "Sales Person");
 
         bool ChangePassword(string userId, string newPassword);
 
