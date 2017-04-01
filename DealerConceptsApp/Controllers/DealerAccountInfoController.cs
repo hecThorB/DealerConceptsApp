@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace DealerConceptsApp.Controllers
 {
+    [AllowAnonymous]
     [RoutePrefix("dealers")]
     public class DealerAccountInfoController : BaseController
     {
