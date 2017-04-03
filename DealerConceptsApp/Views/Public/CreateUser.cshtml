@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "DealerConcepts";
+    Layout = "~/Views/Shared/_layoutDealer.cshtml";
+}
+
+@section styles{
+    <link href="~/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css" rel="stylesheet" />
+    <link href="~/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css" rel="stylesheet" />
+}
+
+
+<div ng-controller="passwordController as dealer">
+    @*<div class="wrapper text-center">
+        <div class="container">*@
+    <!-- Begin Content -->
+    <div class="col-md-12">
+        <div class="row margin-bottom-40">
+            <div class="col-md-12">
+                <!-- Reg-Form -->
+                <form class="sky-form" name="dealer.userRegistrationForm" ng-submit="dealer.addUser()" novalidate>
+                    <header>Create User</header>
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label>E-mail Address</label>
+                                <input type="email" name="email" class="form-control input-lg" ng-class="{'error': !dealer.userRegistrationForm.email.$valid}" placeholder="Email" value="" ng-model="dealer.email" required ng-maxlength="256">
+                                <div class="error" ng-show="dealer.showEmailErrors && dealer.userRegistrationForm.email.$error.required">Email is required</div>
+                                <div class="error" ng-show="dealer.showEmailErrors && dealer.userRegistrationForm.email.$error.email">Must be valid email address</div>
+                                <div class="error" ng-show="dealer.showEmailErrors && dealer.userRegistrationForm.email.$error.maxlength">Email must be less than 256 characters</div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label>Password</label>
+                                @*<p style="font-size: 13px">Must be at least 6 characters and include an uppercase, a digit, & a non-digit character</p>*@
+                                <input type="password" name="password" class="form-control input-lg" ng-class="{'error, must be at least 6 characters and include an uppercase, a digit, & a non-digit character': !dealer.userRegistrationForm.password.$valid}" placeholder="example: Dealer1!" ng-model="dealer.password" required>
+                                <div class="error" ng-show="dealer.showPasswordErrors && dealer.userRegistrationForm.password.$error.required">Password is required</div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label class="sr-only">Confirm Password</label>
+                                <input type="password" name="passwordConfirm" class="form-control input-lg" ng-class="{'error': !dealer.userRegistrationForm.passwordConfirm.$valid}" placeholder="Confirm Password" ng-model="dealer.passwordConfirm" required>
+                                <div class="error" ng-show="dealer.showPasswordConfirmErrors && dealer.userRegistrationForm.passwordConfirm.$error.required">Password Confirmation is required</div>
+                                <div class="error" ng-show="dealer.showPasswordMatchErrors">Password confirmation must match</div>
+                                <div ng-show="dealer.showContentErrors">{{dealer.errorDetails}}</div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <footer>
+                        <button type="submit" class="btn-u" id="confirmPasswordButton">{{dealer.submitButton}}</button>
+                    </footer>
+                </form>
+                <!-- End Reg-Form -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <!------------------------------------NOTIFICATIONS---------------------------------------------->
+    <script src="~/Scripts/dealerConcepts/services/admin/dealerConcepts.services.admin.notifications.js"></script>
+    <script src="~/Scripts/dealerConcepts/services/dealerConcepts.services.dealerAccountInfo.js"></script>
+    <script src="~/Scripts/dealerConcepts/services/dealerConcepts.services.users.js"></script>
+    <!-- Angular Controller-->
+    <script type="text/javascript">
+        (function () {
+            "use strict";
+
+            angular.module(APPNAME)
+                .controller('passwordController', PasswordController);
+
+            PasswordController.$inject = ['$scope', '$baseController', '$usersService'];
+
+            function PasswordController(
+                $scope
+                , $baseController
+                , $usersService) {
+
+                var vm = this;
+
+                $baseController.merge(vm, $baseController);
+
+                vm.$scope = $scope;
+
+                vm.showEmailErrors = false;
+                vm.showPasswordErrors = false;
+                vm.showPasswordConfirmErrors = false;
+                vm.showPasswordMatchErrors = false;
+                vm.showPasswordContentErrors = false;
+
+                vm.users = $usersService;
+                vm.notify = vm.users.getNotifier($scope);
+
+                vm.addUser = _addUser;
+
+                vm.submitButton = "Create Password";
+
+                render();
+
+                function render() {
+
+                }
+
+                function _addUser() {
+                    vm.showEmailErrors = false;
+                    vm.showPasswordErrors = false;
+                    vm.showPasswordConfirmErrors = false;
+                    if (vm.password === vm.passwordConfirm && vm.userRegistrationForm.$valid) {
+                        var data = {
+                            email: vm.email
+                            , password: vm.password
+                        };
+                        vm.users.create(data, _onCreateSuccess, _onCreateError);
+                    } else {
+                        if (vm.password !== vm.passwordConfirm) {
+                            vm.showPasswordMatchErrors = true;
+                        }
+                        if (!vm.userRegistrationForm.$valid) {
+                            vm.showEmailErrors = true;
+                            vm.showPasswordErrors = true;
+                            vm.showPasswordConfirmErrors = true;
+                        }
+                    }
+                }
+
+                function _onCreateSuccess(data) {
+                    sabio.services.admin.notifications.success("Thanks for registering! Please check your email.");
+                    setTimeout(_nextPage, 2500);
+                }
+
+                function _onCreateError(response, textStatus) {
+                    vm.notify(function () {
+                        vm.errorDetails = response.responseJSON.errors.join();
+                        vm.showContentErrors = true;
+                    });
+                }
+
+                function _nextPage() {
+                    window.location = "/profile";
+                }
+            }
+
+        })();
+</script>
+}
